@@ -46,6 +46,15 @@ void dayEntry::put(char* text, int time)
     //TODO FREE te malloc
 }
 
+void dayEntry::deleteAll(void) {
+    _entryCnt = 0;
+    for(int i = 0; i < MAX_DAY_ENTRIES; i++) {
+        free(_entries[i]);
+        //_entries[i]->time = 0;
+        _entries[i] = 0;
+    }
+}
+
 void dayEntry::print(uint8_t nr) 
 {
     entry* pEntry = NULL;
@@ -136,7 +145,7 @@ void displayWrapper::printAppointments(void) {
     {
         Serial.println(appointment._entries[i]->text);
         ePaper.setCursor(x, 15 + 25*i);
-        ePaper.printf("%d:00-%.10s", appointment._entries[i]->time, appointment._entries[i]->text);
+        ePaper.printf("%d-%.10s", appointment._entries[i]->time, appointment._entries[i]->text);
     }
 
     ePaper.nextPage();

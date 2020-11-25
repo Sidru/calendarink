@@ -22,8 +22,9 @@ class dayEntry {
     public:
     void put(entry* data); 
     void put(char* text, int time);
+    void deleteAll(void);
     void print(uint8_t nr);
-    entry* _entries[5];
+    entry* _entries[MAX_DAY_ENTRIES];
     uint8_t _entryCnt = 0;
 };
 
